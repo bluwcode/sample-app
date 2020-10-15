@@ -10,19 +10,26 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var clocktextfield: UITextField!
+
+    var timeInterval = TimeInterval()
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         // Do any additional setup after loading the view.
-        outputtoday()
+            _ = Timer.scheduledTimer(timeInterval:1, target:self,selector: #selector(outputtime),userInfo: nil, repeats: true)
     }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+   
     func gettoday(format:String = "yyyy/mm/dd HH:MM ss") -> String{
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from:now as Date)
     }
-    func outputtoday(){
-        clocktextfield.text = gettoday()
+    @objc func outputtime(){
+     clocktextfield.text = gettoday()
     }
 
 }
