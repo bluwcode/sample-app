@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             return 1
         }
    
-    func gettoday(format:String = "yyyy/mm/dd HH:MM ss") -> String{
+    func gettoday(format:String = "yyyy/MM/dd HH:mm ss") -> String{
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = format
