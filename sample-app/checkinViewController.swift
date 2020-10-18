@@ -7,20 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var clocktextfield: UITextField!
-
+class checkinViewController: UIViewController {
+    @IBOutlet weak var clocktextField: UITextField!
     var timeInterval = TimeInterval()
     override func viewDidLoad() {
         super.viewDidLoad()
       
         // Do any additional setup after loading the view.
-            _ = Timer.scheduledTimer(timeInterval:1, target:self,selector: #selector(outputtime),userInfo: nil, repeats: true)
+        outputtime()
+        _ = Timer.scheduledTimer(timeInterval:1, target:self,selector: #selector(outputtime),userInfo: nil, repeats: true)
     }
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
    
     func gettoday(format:String = "yyyy/MM/dd HH:mm ss") -> String{
         let now = Date()
@@ -29,7 +25,7 @@ class ViewController: UIViewController {
         return formatter.string(from:now as Date)
     }
     @objc func outputtime(){
-     clocktextfield.text = gettoday()
+     clocktextField.text = gettoday()
     }
 
 }

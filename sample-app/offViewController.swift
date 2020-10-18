@@ -9,19 +9,27 @@ import UIKit
 
 class offViewController: UIViewController ,UIPickerViewDelegate, UIPickerViewDataSource {
 
-    
-    
+    @IBOutlet weak var clocktextField: UITextField!
     @IBOutlet weak var offreasonlabel: UILabel!
     @IBOutlet weak var pickerView: UIPickerView!
-    
-    
+    var timeInterval = TimeInterval()
     var dataList = ["AM","PM","1day"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        outputtime()
         pickerView.delegate = self
         pickerView.dataSource = self
-            
-        // Do any additional setup after loading the view.
+        _ = Timer.scheduledTimer(timeInterval:1, target:self,selector: #selector(outputtime),userInfo: nil, repeats: true)
+    }
+    func gettoday(format:String = "yyyy/MM/dd HH:mm ss") -> String{
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from:now as Date)
+    }
+    @objc func outputtime(){
+     clocktextField.text = gettoday()
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
